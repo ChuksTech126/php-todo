@@ -1,4 +1,4 @@
-check if it is syntactically correct                    pipeline {
+pipeline {
     agent any
 
     stages {
