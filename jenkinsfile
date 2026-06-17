@@ -56,7 +56,7 @@ pipeline {
             steps {
                 script {
                     def server = Artifactory.server('artifactory-server')
-
+                    server.credentialsId = 'artifactory-creds'
                     def uploadSpec = """{
                         "files": [
                             {
