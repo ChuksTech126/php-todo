@@ -78,5 +78,22 @@ stage ('Deploy to Dev Environment') {
     build job: 'ANSIBLE-CONFIG-MGT/main', parameters: [[$class: 'StringParameterValue', name: 'env', value: 'dev']], propagate: false, wait: true
     }
   }
+stage('SonarQube Analysis') {
+    environment {
+        scannerHome = tool 'SonarQubeScanner'
+    }
+    steps {
+        withSonarQubeEnv('Sonarqube') {
+            sh """
+            ${scannerHome}/bin/sonar-scanner \
+              -Dsonar.projectKey=php-todo \
+              -Dsonar.projectName="PHP Todo" \
+              -Dsonar.sources=app \
+              -Dsonar.php.tests.reportPath=build/logs/phpunit.xml \
+              -Dsonar.php.coverage.reportPaths=build/logs/clover.xml
+            """
+        }
+    }
+}
     }
 }
