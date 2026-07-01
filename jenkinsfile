@@ -80,12 +80,12 @@ stage ('Deploy to Dev Environment') {
   }
 stage('SonarQube Analysis') {
     environment {
-        scannerHome = tool 'SonarQubeScanner'
+        scannerHome = tool 'SonarScanner'
     }
     steps {
         withSonarQubeEnv('Sonarqube') {
             sh """
-            ${scannerHome}/bin/linux-x86-64/sonar.sh \
+            ${scannerHome}/bin/sonar-scanner \
               -Dsonar.projectKey=php-todo \
               -Dsonar.projectName="PHP Todo" \
               -Dsonar.sources=app \
