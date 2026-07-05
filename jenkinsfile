@@ -84,14 +84,8 @@ stage('SonarQube Analysis') {
     }
     steps {
         withSonarQubeEnv('Sonarqube') {
-            sh """
-            ${scannerHome}/bin/sonar-scanner \
-              -Dsonar.projectKey=php-todo \
-              -Dsonar.projectName="PHP Todo" \
-              -Dsonar.sources=app \
-              -Dsonar.php.tests.reportPath=build/logs/phpunit.xml \
-              -Dsonar.php.coverage.reportPaths=build/logs/clover.xml
-            """
+            sh "${scannerHome}/bin/sonar-scanner"
+          
         }
     }
 }
