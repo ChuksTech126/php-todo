@@ -85,7 +85,6 @@ stage('SonarQube Analysis') {
     steps {
         withSonarQubeEnv('Sonarqube') {
             sh "${scannerHome}/bin/sonar-scanner"
-          
         }
     }
 }
