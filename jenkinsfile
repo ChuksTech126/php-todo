@@ -103,7 +103,7 @@ pipeline {
             }
 
             environment {
-                scannerHome = tool 'SonarQubeScanner'
+                scannerHome = tool 'SonarQube Scanner'
             }
 
             steps {
